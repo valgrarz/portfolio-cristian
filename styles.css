@@ -6,7 +6,7 @@
     --text-color: #4A4A4A;
     --light-text: #757575;
     --background: #ffffff;
-    --section-bg: #FFF8F6;
+    --section-bg: #fff5f2;
     --card-bg: #ffffff;
     --gradient-start: #FF7043;
     --gradient-end: #FF8A65;
@@ -18,14 +18,14 @@
 
 /* Dark Mode Variables */
 [data-theme="dark"] {
-    --primary-color: #FF8A65;
-    --secondary-color: #FFAB91;
+    --primary-color: #FF7043;
+    --secondary-color: #FF8A65;
     --text-color: #f3f4f6;
     --light-text: #d1d5db;
-    --background: #111827;
-    --section-bg: #1f2937;
-    --card-bg: #1f2937;
-    --nav-bg: rgba(31, 41, 55, 0.95);
+    --background: #1a1f2e;
+    --section-bg: #151b2d;
+    --card-bg: #1e2435;
+    --nav-bg: rgba(26, 31, 46, 0.95);
     --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     --pattern-color: rgba(255, 255, 255, 0.03);
     --blur-color: rgba(255, 138, 101, 0.015);
@@ -46,7 +46,7 @@ body {
     font-family: 'Poppins', sans-serif;
     line-height: 1.6;
     color: var(--text-color);
-    background: var(--background);
+    background-color: var(--background) !important;
     position: relative;
     overflow-x: hidden;
 }
@@ -108,7 +108,7 @@ body::before {
     position: fixed;
     top: 0;
     width: 100%;
-    background: var(--nav-bg);
+    background-color: var(--nav-bg) !important;
     backdrop-filter: blur(10px);
     box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
     z-index: 1000;
@@ -328,12 +328,13 @@ body::before {
 
 /* Sections */
 section {
-    padding: 4rem 2rem;
+    background-color: var(--background) !important;
     position: relative;
+    padding: 4rem 2rem;
 }
 
 section:nth-child(even) {
-    background: var(--section-bg);
+    background-color: var(--section-bg) !important;
 }
 
 section:nth-child(odd) {
@@ -446,7 +447,7 @@ h2::after {
 }
 
 .skill-card {
-    background: var(--card-bg);
+    background-color: var(--card-bg) !important;
     padding: 2rem 1.5rem;
     border-radius: 20px;
     text-align: center;
@@ -454,8 +455,6 @@ h2::after {
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
-    opacity: 0;
-    transform: translateY(20px);
     height: 100%;
     min-height: 220px;
     display: flex;
@@ -529,7 +528,7 @@ h2::after {
 }
 
 .project-card {
-    background: var(--card-bg);
+    background-color: var(--card-bg) !important;
     border-radius: 12px;
     overflow: hidden;
     box-shadow: var(--card-shadow);
@@ -1613,5 +1612,61 @@ body.light-section-visible {
     }
     60% {
         transform: translateY(-10px);
+    }
+}
+
+/* Mobile Menu Styles */
+.mobile-menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    z-index: 1000;
+}
+
+@media (max-width: 768px) {
+    .mobile-menu-toggle {
+        display: block;
+    }
+
+    .nav-content {
+        position: relative;
+    }
+
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: var(--nav-bg);
+        padding: 1rem;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        border-radius: 0 0 10px 10px;
+        box-shadow: var(--card-shadow);
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-buttons {
+        margin-left: 0;
+        gap: 0.5rem;
+    }
+
+    .language-toggle {
+        padding: 0.3rem 0.8rem;
+        min-width: 40px;
+    }
+
+    .theme-toggle {
+        width: 35px;
+        height: 35px;
     }
 } 

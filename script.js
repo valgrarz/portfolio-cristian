@@ -697,4 +697,28 @@ window.addEventListener('mouseleave', () => {
 });
 
 // Iniciar la animación
-animateParallax(); 
+animateParallax();
+
+// Mobile Menu Functionality
+const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+const navLinks = document.querySelector('.nav-links');
+
+if (mobileMenuToggle) {
+    mobileMenuToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+    });
+
+    // Cerrar el menú al hacer clic en un enlace
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+        });
+    });
+
+    // Cerrar el menú al hacer clic fuera
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.nav-content')) {
+            navLinks.classList.remove('active');
+        }
+    });
+} 
