@@ -174,6 +174,7 @@ const translations = {
             home: "Inicio",
             about: "Sobre mí",
             education: "Educación",
+            certifications: "Certificaciones",
             experience: "Experiencia",
             skills: "Habilidades",
             projects: "Proyectos",
@@ -210,6 +211,29 @@ const translations = {
                     degree2: "Sistemas Microinformáticos y Redes",
                     date1: "Septiembre 2022 - Junio 2024",
                     date2: "Septiembre 2019 - Junio 2022"
+                }
+            },
+            certifications: {
+                title: "Certificaciones",
+                items: {
+                    ccna: {
+                        name: "CCNA Routing and Switching",
+                        issuer: "Cisco",
+                        date: "Enero 2024",
+                        description: "Certificación en redes y conmutación de Cisco"
+                    },
+                    comptia: {
+                        name: "CompTIA Security+",
+                        issuer: "CompTIA",
+                        date: "Marzo 2024",
+                        description: "Certificación en seguridad informática"
+                    },
+                    aws: {
+                        name: "AWS Certified Solutions Architect",
+                        issuer: "Amazon Web Services",
+                        date: "Mayo 2024",
+                        description: "Certificación en arquitectura de soluciones en la nube"
+                    }
                 }
             }
         },
@@ -306,6 +330,7 @@ const translations = {
             title: "Contacto",
             languages: "Idiomas",
             spanish: "Español",
+            valencian: "Valenciano",
             english: "Inglés",
             italian: "Italiano",
             nativeLevel: "Nativo",
@@ -313,7 +338,7 @@ const translations = {
             basicLevel: "Básico"
         },
         footer: {
-            copyright: "Todos los derechos reservados."
+            copyright: "Portfolio creado de 0 por Cristian Vargas. Codigo totalmente abierto."
         }
     },
     en: {
@@ -321,6 +346,7 @@ const translations = {
             home: "Home",
             about: "About",
             education: "Education",
+            certifications: "Certifications",
             experience: "Experience",
             skills: "Skills",
             projects: "Projects",
@@ -357,6 +383,29 @@ const translations = {
                     degree2: "Microcomputer Systems and Networks",
                     date1: "September 2022 - June 2024",
                     date2: "September 2019 - June 2022"
+                }
+            },
+            certifications: {
+                title: "Certifications",
+                items: {
+                    ccna: {
+                        name: "CCNA Routing and Switching",
+                        issuer: "Cisco",
+                        date: "January 2024",
+                        description: "Cisco networking and switching certification"
+                    },
+                    comptia: {
+                        name: "CompTIA Security+",
+                        issuer: "CompTIA",
+                        date: "March 2024",
+                        description: "Information security certification"
+                    },
+                    aws: {
+                        name: "AWS Certified Solutions Architect",
+                        issuer: "Amazon Web Services",
+                        date: "May 2024",
+                        description: "Cloud solutions architecture certification"
+                    }
                 }
             }
         },
@@ -453,6 +502,7 @@ const translations = {
             title: "Contact",
             languages: "Languages",
             spanish: "Spanish",
+            valencian: "Valencian",
             english: "English",
             italian: "Italian",
             nativeLevel: "Native",
@@ -460,7 +510,7 @@ const translations = {
             basicLevel: "Basic"
         },
         footer: {
-            copyright: "All rights reserved."
+            copyright: "Portfolio created from scratch by Cristian Vargas. Code fully open source."
         }
     }
 };
@@ -471,6 +521,10 @@ function updateLanguage(language) {
         const section = link.getAttribute('href').replace('#', '');
         if (translations[language].nav[section]) {
             link.textContent = translations[language].nav[section];
+        }
+        // Add support for data attributes translation
+        if (link.hasAttribute(`data-${language}`)) {
+            link.textContent = link.getAttribute(`data-${language}`);
         }
     });
 
@@ -523,6 +577,30 @@ function updateLanguage(language) {
             if (degree) degree.textContent = index === 1 ? data.degree1 : data.degree2;
             if (institution) institution.textContent = data.name;
             if (location) location.textContent = data.location;
+        }
+    });
+
+    // Update certifications section
+    const certificationsTitle = document.querySelector('#certifications h2');
+    if (certificationsTitle) certificationsTitle.textContent = translations[language].certifications.title;
+
+    // Update certification items
+    const certificationItems = document.querySelectorAll('.certification-item');
+    const certifications = ['ccna', 'comptia', 'aws'];
+    
+    certificationItems.forEach((item, index) => {
+        const cert = certifications[index];
+        if (cert && translations[language].certifications.items[cert]) {
+            const data = translations[language].certifications.items[cert];
+            const date = item.querySelector('.certification-date span');
+            const name = item.querySelector('h3');
+            const issuer = item.querySelector('h4');
+            const description = item.querySelector('p');
+            
+            if (date) date.textContent = data.date;
+            if (name) name.textContent = data.name;
+            if (issuer) issuer.textContent = data.issuer;
+            if (description) description.textContent = data.description;
         }
     });
 
@@ -620,18 +698,20 @@ function updateLanguage(language) {
         const languageLevels = document.querySelectorAll('.language-level');
 
         if (languageNames[0]) languageNames[0].textContent = translations[language].contact.spanish + ':';
-        if (languageNames[1]) languageNames[1].textContent = translations[language].contact.english + ':';
-        if (languageNames[2]) languageNames[2].textContent = translations[language].contact.italian + ':';
+        if (languageNames[1]) languageNames[1].textContent = translations[language].contact.valencian + ':';
+        if (languageNames[2]) languageNames[2].textContent = translations[language].contact.english + ':';
+        if (languageNames[3]) languageNames[3].textContent = translations[language].contact.italian + ':';
 
         if (languageLevels[0]) languageLevels[0].textContent = translations[language].contact.nativeLevel;
-        if (languageLevels[1]) languageLevels[1].textContent = translations[language].contact.intermediateLevel;
-        if (languageLevels[2]) languageLevels[2].textContent = translations[language].contact.basicLevel;
+        if (languageLevels[1]) languageLevels[1].textContent = translations[language].contact.nativeLevel;
+        if (languageLevels[2]) languageLevels[2].textContent = translations[language].contact.intermediateLevel;
+        if (languageLevels[3]) languageLevels[3].textContent = translations[language].contact.basicLevel;
     }
 
     // Update footer
     const footer = document.querySelector('footer p');
     if (footer) {
-        footer.textContent = `© 2024 Cristian Vargas. ${translations[language].footer.copyright}`;
+        footer.textContent = `© ${translations[language].footer.copyright}`;
     }
 }
 
@@ -699,26 +779,28 @@ window.addEventListener('mouseleave', () => {
 // Iniciar la animación
 animateParallax();
 
-// Mobile Menu Functionality
+// Mobile Menu Toggle
 const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
 const navLinks = document.querySelector('.nav-links');
 
-if (mobileMenuToggle) {
-    mobileMenuToggle.addEventListener('click', () => {
+if (mobileMenuToggle && navLinks) {
+    // Función para cerrar el menú
+    const closeMenu = () => {
+        navLinks.classList.remove('active');
+        document.body.style.overflow = '';
+    };
+
+    // Toggle del menú al hacer clic en el botón
+    mobileMenuToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
         navLinks.classList.toggle('active');
+        document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
     });
 
-    // Cerrar el menú al hacer clic en un enlace
-    document.querySelectorAll('.nav-links a').forEach(link => {
-        link.addEventListener('click', () => {
-            navLinks.classList.remove('active');
-        });
-    });
-
-    // Cerrar el menú al hacer clic fuera
-    document.addEventListener('click', (e) => {
-        if (!e.target.closest('.nav-content')) {
-            navLinks.classList.remove('active');
+    // Mantener el menú abierto solo cuando se hace clic en los enlaces
+    navLinks.addEventListener('click', (e) => {
+        if (!e.target.matches('a')) {
+            closeMenu();
         }
     });
 } 
