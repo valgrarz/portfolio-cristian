@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificaciones - Cristian Vargas</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="certifications.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="nav-buttons">
+        <a href="index.html" class="back-button">
+            <i class="fas fa-arrow-left"></i>
+            <span class="back-text">Volver al Portfolio</span>
+        </a>
+    </div>
+
+    <div class="certifications-container">
+        <h2 class="section-title">Certificaciones</h2>
+        <div class="education-list">
+            <div class="education-item">
+                <div class="education-content">
+                    <div class="education-date" data-es="Expedición: feb. 2025" data-en="Issued: Feb 2025">Expedición: feb. 2025</div>
+                    <h3 data-es="Microsoft Certified: Aspectos básicos de Azure" data-en="Microsoft Certified: Azure Fundamentals">Microsoft Certified: Aspectos básicos de Azure</h3>
+                    <h4>Microsoft</h4>
+                    <p><a href="https://learn.microsoft.com/es-es/users/cristianvargas-4695/credentials/cdfc7278edd96ad3?ref=https%3A%2F%2Fwww.linkedin.com%2F" data-es="ID de la credencial" data-en="Credential ID">ID de la credencial</a></p>
+                </div>
+            </div>
+
+            <div class="education-item">
+                <div class="education-content">
+                    <div class="education-date" data-es="Expedición: abr. 2025" data-en="Issued: Apr 2025">Expedición: abr. 2025</div>
+                    <h3 data-es="Curso Maestro de Python: De Cero a Programador Todoterreno" data-en="Python Master Course: From Zero to All-Round Programmer">Curso Maestro de Python: De Cero a Programador Todoterreno</h3>
+                    <h4>Udemy</h4>
+                    <p data-es="ID de la credencial" data-en="Credential ID">ID de la credencial</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p class="footer-text" data-es="© Portfolio creado de 0 por Cristian Vargas. Codigo totalmente abierto." 
+           data-en="© Portfolio created from scratch by Cristian Vargas. Code fully open source.">
+            © Portfolio creado de 0 por Cristian Vargas. Codigo totalmente abierto.
+        </p>
+    </footer>
+
+    <script>
+        // Al cargar la página
+        document.addEventListener('DOMContentLoaded', () => {
+            try {
+                // Sincronizar tema
+                const savedTheme = localStorage.getItem('theme') || 'light';
+                document.body.setAttribute('data-theme', savedTheme);
+                document.documentElement.setAttribute('data-theme', savedTheme);
+
+                // Sincronizar idioma
+                const currentLanguage = localStorage.getItem('language') || 'es';
+                updateTexts(currentLanguage);
+
+                // Verificar que los estilos se han cargado
+                const styles = document.styleSheets;
+                console.log('Estilos cargados:', styles.length);
+            } catch (error) {
+                console.error('Error al inicializar:', error);
+            }
+        });
+
+        // Función para actualizar los textos según el idioma
+        function updateTexts(language) {
+            try {
+                const translations = {
+                    es: {
+                        backText: 'Volver al Portfolio',
+                        title: 'Certificaciones'
+                    },
+                    en: {
+                        backText: 'Back to Portfolio',
+                        title: 'Certifications'
+                    }
+                };
+
+                // Actualizar textos básicos
+                document.querySelector('.back-text').textContent = translations[language].backText;
+                document.querySelector('.section-title').textContent = translations[language].title;
+                document.title = translations[language].title + ' - Cristian Vargas';
+
+                // Actualizar todos los elementos con atributos data-es y data-en
+                document.querySelectorAll('[data-es][data-en]').forEach(element => {
+                    element.textContent = element.getAttribute(`data-${language}`);
+                });
+            } catch (error) {
+                console.error('Error al actualizar textos:', error);
+            }
+        }
+    </script>
+</body>
+</html> 
