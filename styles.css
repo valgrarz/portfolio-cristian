@@ -2095,100 +2095,148 @@ body.light-section-visible {
 }
 
 /* Certifications Section */
-
-.certifications h2 {
-    text-align: center;
-    margin-bottom: 40px;
-    font-size: 2.5rem;
-    color: var(--text-color);
-}
-
-.certifications-timeline {
+.certifications {
     position: relative;
-    max-width: 800px;
-    margin: 0 auto;
+    padding: 6rem 2rem;
+    background: var(--section-bg);
+    overflow: hidden;
 }
 
-.certifications-timeline::before {
+.certifications::before {
     content: '';
     position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 2px;
-    height: 100%;
-    background: var(--accent-color);
-}
-
-.certification-item {
-    position: relative;
-    margin-bottom: 40px;
+    top: 0;
+    left: 0;
     width: 100%;
-    display: flex;
-    justify-content: center;
+    height: 100%;
+    background: radial-gradient(circle at 70% 30%, var(--pattern-color) 0%, transparent 70%),
+                radial-gradient(circle at 30% 70%, var(--pattern-color) 0%, transparent 70%);
+    opacity: 0.5;
+    z-index: 0;
 }
 
-.certification-date {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    background: var(--accent-color);
-    color: var(--bg-color);
-    padding: 8px 16px;
-    border-radius: 20px;
-    font-size: 0.9rem;
-    font-weight: 500;
-    z-index: 1;
-}
-
-.certification-content {
+.certifications-content {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 3rem;
     background: var(--card-bg);
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    width: calc(50% - 40px);
-    margin-top: 40px;
+    border-radius: 20px;
+    box-shadow: var(--card-shadow);
+    position: relative;
+    z-index: 1;
+    transform: translateY(0);
+    transition: all 0.5s ease;
+}
+
+.certifications-icon {
+    font-size: 4rem;
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    animation: float 3s ease-in-out infinite;
+}
+
+.certifications-content h3 {
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+}
+
+.certifications-content p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--text-color);
+    margin-bottom: 2.5rem;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.certifications-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+    color: white;
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.certifications-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
+    );
+    transition: 0.5s;
+}
+
+.certifications-button:hover::before {
+    left: 100%;
+}
+
+.certifications-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(255, 107, 53, 0.2);
+}
+
+.certifications-button i {
     transition: transform 0.3s ease;
 }
 
-.certification-content:hover {
-    transform: translateY(-5px);
+.certifications-button:hover i {
+    transform: translateX(5px);
 }
 
-.certification-content h3 {
-    color: var(--text-color);
-    font-size: 1.2rem;
-    margin-bottom: 10px;
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
 }
 
-.certification-content h4 {
-    color: var(--accent-color);
-    font-size: 1rem;
-    margin-bottom: 10px;
-}
-
-.certification-content p {
-    color: var(--text-secondary);
-    font-size: 0.9rem;
-    line-height: 1.5;
-}
-
-/* Responsive styles for certifications */
 @media (max-width: 768px) {
-    .certifications-timeline::before {
-        left: 30px;
+    .certifications {
+        padding: 4rem 1rem;
     }
 
-    .certification-item {
-        justify-content: flex-start;
+    .certifications-content {
+        padding: 2rem;
     }
 
-    .certification-date {
-        left: 30px;
-        transform: none;
+    .certifications-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
     }
 
-    .certification-content {
-        width: calc(100% - 80px);
-        margin-left: 60px;
+    .certifications-content h3 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .certifications-content p {
+        font-size: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .certifications-button {
+        padding: 0.8rem 2rem;
+        font-size: 1rem;
     }
 } 
